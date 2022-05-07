@@ -68,6 +68,7 @@ b HardFault_Handler
 b BusFault_Handler
 b UsageFault_Handler
 b WWDG_IRQHandler
+b Error_Handler
 b main
 b app
 	commands

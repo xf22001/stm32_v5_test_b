@@ -6,7 +6,7 @@
 #   文件名称：user.mk
 #   创 建 者：肖飞
 #   创建日期：2019年10月25日 星期五 13时04分38秒
-#   修改日期：2022年05月07日 星期六 10时48分39秒
+#   修改日期：2022年05月07日 星期六 11时17分05秒
 #   描    述：
 #
 #================================================================
@@ -91,7 +91,7 @@ LDFLAGS += -u _printf_float
 
 default: all
 
-LDSCRIPT = STM32F407VGTx_FLASH.ld
+LDSCRIPT = STM32F207VGTx_FLASH.ld
 
 PHONY += all
 PHONY += default
