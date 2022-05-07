@@ -6,7 +6,7 @@
  *   文件名称：channels.c
  *   创 建 者：肖飞
  *   创建日期：2021年01月18日 星期一 09时26分31秒
- *   修改日期：2022年05月06日 星期五 14时43分11秒
+ *   修改日期：2022年05月07日 星期六 10时48分24秒
  *   描    述：
  *
  *================================================================*/
@@ -19,6 +19,8 @@
 #include "os_utils.h"
 #include "app.h"
 #include "display.h"
+#include "test_can_b.h"
+#include "test_uart_b.h"
 
 #include "log.h"
 
@@ -196,6 +198,15 @@ static int channels_info_set_channels_config(channels_info_t *channels_info, cha
 		OS_ASSERT(register_callback(display_info->modbus_slave_info->data_changed_chain, &channels_info->display_data_changed_callback_item) == 0);
 	}
 
+	channels_info->can1 = test_can_b(channels_info, channels_info->channels_config->can1.hcan, 0);
+	channels_info->can2 = test_can_b(channels_info, channels_info->channels_config->can2.hcan, 1);
+	channels_info->can3 = test_can_b(channels_info, channels_info->channels_config->can3.hcan, 2);
+	channels_info->uart1 = test_uart_b(channels_info, channels_info->channels_config->uart1.huart, 0);
+	channels_info->uart2 = test_uart_b(channels_info, channels_info->channels_config->uart2.huart, 1);
+	channels_info->uart3 = test_uart_b(channels_info, channels_info->channels_config->uart3.huart, 2);
+	channels_info->uart4 = test_uart_b(channels_info, channels_info->channels_config->uart4.huart, 3);
+	channels_info->uart5 = test_uart_b(channels_info, channels_info->channels_config->uart5.huart, 4);
+
 	channels_info->configed = 1;
 
 	return ret;
@@ -204,7 +215,6 @@ static int channels_info_set_channels_config(channels_info_t *channels_info, cha
 static channels_info_t *alloc_channels_info(channels_config_t *channels_config)
 {
 	channels_info_t *channels_info = NULL;
-	app_info_t *app_info = get_app_info();
 
 	OS_ASSERT(channels_config != NULL);
 

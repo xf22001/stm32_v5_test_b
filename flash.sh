@@ -6,13 +6,13 @@
 #   文件名称：flash.sh
 #   创 建 者：肖飞
 #   创建日期：2019年08月09日 星期五 10时59分21秒
-#   修改日期：2022年05月03日 星期二 15时17分21秒
+#   修改日期：2022年05月07日 星期六 10时58分43秒
 #   描    述：
 #
 #================================================================
 opt_string="b:a:efd"
 
-bin_file="build/dc_charger.hex"
+bin_file="build/v5_test_b.hex"
 load_address="0x8000000"
 erase_flash=0
 flush_flash=0
@@ -142,21 +142,21 @@ function main() {
 
 	if [ $erase_flash -eq 1 ];then
 		gen_jlink_script_erase
-		JLinkExe -Device "STM32F407ZGTx" -IF "$link_if" -JTAGConf "-1,-1" -Speed "4000" -CommanderScript "$jlink_script"
+		JLinkExe -Device "STM32F407VGTx" -IF "$link_if" -JTAGConf "-1,-1" -Speed "4000" -CommanderScript "$jlink_script"
 		rm "$jlink_script"
 	fi
 
 	if [ $flush_flash -eq 1 ];then
 		gen_jlink_script_flash
-		JLinkExe -Device "STM32F407ZGTx" -IF "$link_if" -JTAGConf "-1,-1" -Speed "4000" -CommanderScript "$jlink_script"
+		JLinkExe -Device "STM32F407VGTx" -IF "$link_if" -JTAGConf "-1,-1" -Speed "4000" -CommanderScript "$jlink_script"
 		rm "$jlink_script"
 	fi	
 
 	if [ $debug -eq 1 ];then
 		#gen_jlink_script_debug
-		#JLinkExe -Device "STM32F407ZGTx" -IF "$link_if" -JTAGConf "-1,-1" -Speed "4000" -CommanderScript "$jlink_script"
+		#JLinkExe -Device "STM32F407VGTx" -IF "$link_if" -JTAGConf "-1,-1" -Speed "4000" -CommanderScript "$jlink_script"
 		#rm "$jlink_script"
-		JLinkGDBServer -select USB -device STM32F407ZGTx -endian little -if $link_if -speed 4000 -noir -noLocalhostOnly
+		JLinkGDBServer -select USB -device STM32F407VGTx -endian little -if $link_if -speed 4000 -noir -noLocalhostOnly
 	fi
 }
 

@@ -6,7 +6,7 @@
  *   文件名称：channels.h
  *   创 建 者：肖飞
  *   创建日期：2021年01月18日 星期一 10时08分44秒
- *   修改日期：2022年05月06日 星期五 14时45分45秒
+ *   修改日期：2022年05月07日 星期六 10时45分06秒
  *   描    述：
  *
  *================================================================*/
@@ -43,6 +43,14 @@ typedef struct {
 
 typedef enum {
 	CHANNELS_FAULT_DISPLAY = 0,
+	CHANNELS_FAULT_CAN1,
+	CHANNELS_FAULT_CAN2,
+	CHANNELS_FAULT_CAN3,
+	CHANNELS_FAULT_UART1,
+	CHANNELS_FAULT_UART2,
+	CHANNELS_FAULT_UART3,
+	CHANNELS_FAULT_UART4,
+	CHANNELS_FAULT_UART5,
 	CHANNELS_FAULT_SIZE,
 } channels_fault_t;
 
@@ -78,6 +86,14 @@ typedef struct {
 	bitmap_t *faults;//channels_fault_t
 
 	void *display_info;
+	void *can1;
+	void *can2;
+	void *can3;
+	void *uart1;
+	void *uart2;
+	void *uart3;
+	void *uart4;
+	void *uart5;
 } channels_info_t;
 
 char *get_channels_event_type_des(channels_event_type_t type);

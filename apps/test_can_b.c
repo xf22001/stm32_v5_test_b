@@ -6,7 +6,7 @@
  *   文件名称：test_can_b.c
  *   创 建 者：肖飞
  *   创建日期：2022年05月06日 星期五 15时24分38秒
- *   修改日期：2022年05月06日 星期五 16时55分05秒
+ *   修改日期：2022年05月07日 星期六 10时08分24秒
  *   描    述：
  *
  *================================================================*/
@@ -14,24 +14,10 @@
 
 #include <stdlib.h>
 
-#include "os_utils.h"
 #include "can_data_task.h"
 #include "can.h"
-#include "command_status.h"
 
 #include "log.h"
-
-typedef struct {
-	uint8_t id;
-	uint32_t extid;
-	u_u64_u32_t send;
-	uint32_t stamp;
-	uint32_t send_stamp;
-	command_state_t state;
-	callback_item_t data_request_cb;
-	callback_item_t data_response_cb;
-	channels_info_t *channel_info;
-} can_test_ctx_t;
 
 static int can_send_data(can_test_ctx_t *ctx, can_info_t *can_info)
 {
@@ -94,9 +80,11 @@ static void can_data_response(void *fn_ctx, void *chain_ctx)
 	can_rx_msg_t *can_rx_msg = can_get_msg(can_data_task_info->can_info);
 	uint32_t *recv = (uint32_t *)can_rx_msg->Data;
 	uint32_t send = ctx->send.s.u32_0 + ctx->send.s.u32_1;
+	uint32_t ticks = osKernelSysTick();
 
 	if(can_rx_msg->ExtId == ctx->extid) {
 		if(send == *recv) {
+			ctx->alive_stamps = ticks;
 			ctx->state = COMMAND_STATE_IDLE;
 		} else {
 			debug("can %d rx error! send:%08x, recv:%08x", ctx->id, send, *recv);
@@ -107,7 +95,50 @@ static void can_data_response(void *fn_ctx, void *chain_ctx)
 	}
 }
 
-void test_can_b(channels_info_t *channel_info, void *hcan, uint8_t id)
+static void can_test_periodic(void *fn_ctx, void *chain_ctx)
+{
+	can_test_ctx_t *ctx = (can_test_ctx_t *)fn_ctx;
+	channels_info_t *channels_info = (channels_info_t *)chain_ctx;
+	uint32_t ticks = osKernelSysTick();
+	uint8_t fault = 0;
+	int can_fault = -1;
+
+	switch(ctx->id) {
+		case 0: {
+			can_fault = CHANNELS_FAULT_CAN1;
+		}
+		break;
+
+		case 1: {
+			can_fault = CHANNELS_FAULT_CAN2;
+		}
+		break;
+
+		case 2: {
+			can_fault = CHANNELS_FAULT_CAN3;
+		}
+		break;
+
+		default: {
+			app_panic();
+		}
+		break;
+	}
+
+	if(ticks_duration(ticks, ctx->alive_stamps) >= 1000) {
+		fault = 1;
+	}
+
+	if(get_fault(channels_info->faults, can_fault) != fault) {
+		set_fault(channels_info->faults, can_fault, fault);
+
+		if(fault != 0) {
+			debug("");
+		}
+	}
+}
+
+can_test_ctx_t *test_can_b(channels_info_t *channels_info, void *hcan, uint8_t id)
 {
 	can_test_ctx_t *ctx = os_calloc(1, sizeof(can_test_ctx_t));
 	can_data_task_info_t *can_data_task_info = get_or_alloc_can_data_task_info(hcan);
@@ -120,9 +151,15 @@ void test_can_b(channels_info_t *channel_info, void *hcan, uint8_t id)
 
 	ctx->data_request_cb.fn = can_data_request;
 	ctx->data_request_cb.fn_ctx = ctx;
-	add_can_data_task_info_request_cb(can_data_task_info, &ctx->data_request_cb);
+	OS_ASSERT(add_can_data_task_info_request_cb(can_data_task_info, &ctx->data_request_cb) == 0);
 
 	ctx->data_response_cb.fn = can_data_response;
 	ctx->data_response_cb.fn_ctx = ctx;
-	add_can_data_task_info_response_cb(can_data_task_info, &ctx->data_response_cb);
+	OS_ASSERT(add_can_data_task_info_response_cb(can_data_task_info, &ctx->data_response_cb) == 0);
+
+	ctx->periodic_callback_item.fn = can_test_periodic;
+	ctx->periodic_callback_item.fn_ctx = ctx;
+	OS_ASSERT(register_callback(channels_info->common_periodic_chain, &ctx->periodic_callback_item) == 0);
+
+	return ctx;
 }
