@@ -6,7 +6,7 @@
 #   文件名称：user.mk
 #   创 建 者：肖飞
 #   创建日期：2019年10月25日 星期五 13时04分38秒
-#   修改日期：2022年05月07日 星期六 11时17分05秒
+#   修改日期：2022年05月09日 星期一 10时59分58秒
 #   描    述：
 #
 #================================================================
@@ -39,6 +39,7 @@ USER_C_SOURCES += apps/channels_config.c
 USER_C_SOURCES += apps/channels.c
 USER_C_SOURCES += apps/test_can_b.c
 USER_C_SOURCES += apps/test_uart_b.c
+USER_C_SOURCES += apps/channels_addr_handler.c
 ifneq ($(call ifdef_any_of,SPI_CAN),)
 USER_C_SOURCES += apps/exti.c
 endif
