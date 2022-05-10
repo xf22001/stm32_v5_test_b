@@ -6,7 +6,7 @@
  *   文件名称：channels.c
  *   创 建 者：肖飞
  *   创建日期：2021年01月18日 星期一 09时26分31秒
- *   修改日期：2022年05月10日 星期二 15时08分15秒
+ *   修改日期：2022年05月10日 星期二 16时20分24秒
  *   描    述：
  *
  *================================================================*/
@@ -200,7 +200,7 @@ static int channels_info_set_channels_config(channels_info_t *channels_info, cha
 
 	channels_info->can1 = test_can_b(channels_info, channels_info->channels_config->can1.hcan, 0);
 	channels_info->can2 = test_can_b(channels_info, channels_info->channels_config->can2.hcan, 1);
-	//channels_info->can3 = test_can_b(channels_info, channels_info->channels_config->can3.hcan, 2);
+	channels_info->can3 = test_can_b(channels_info, channels_info->channels_config->can3.hcan, 2);
 	channels_info->uart1 = test_uart_b(channels_info, channels_info->channels_config->uart1.huart, 0);
 	channels_info->uart2 = test_uart_b(channels_info, channels_info->channels_config->uart2.huart, 1);
 	channels_info->uart3 = test_uart_b(channels_info, channels_info->channels_config->uart3.huart, 2);
