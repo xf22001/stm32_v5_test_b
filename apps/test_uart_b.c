@@ -6,7 +6,7 @@
  *   文件名称：test_uart_b.c
  *   创 建 者：肖飞
  *   创建日期：2022年05月07日 星期六 09时35分03秒
- *   修改日期：2022年05月09日 星期一 10时51分34秒
+ *   修改日期：2022年05月10日 星期二 15时10分44秒
  *   描    述：
  *
  *================================================================*/
@@ -49,10 +49,10 @@ static void uart_data_request(void *fn_ctx, void *chain_ctx)
 		tx_size = uart_tx_data(uart_data_task_info->uart_info, ctx->tx_data, ctx->tx_size, 100);
 
 		if(tx_size != ctx->tx_size) {
-			debug("tx_size:%d, ctx->tx_size:%d", tx_size, ctx->tx_size);
+			debug("uart %d tx_size:%d, ctx->tx_size:%d", ctx->id, tx_size, ctx->tx_size);
 		}
 	} else {
-		debug("rx_size:%d, ctx->rx_size:%d", rx_size, ctx->rx_size);
+		debug("uart %d rx_size:%d, ctx->rx_size:%d", ctx->id, rx_size, ctx->rx_size);
 	}
 }
 

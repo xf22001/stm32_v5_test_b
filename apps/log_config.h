@@ -6,7 +6,7 @@
  *   文件名称：log_config.h
  *   创 建 者：肖飞
  *   创建日期：2021年03月22日 星期一 16时50分40秒
- *   修改日期：2022年03月18日 星期五 13时03分34秒
+ *   修改日期：2022年05月10日 星期二 14时49分36秒
  *   描    述：
  *
  *================================================================*/
@@ -19,7 +19,7 @@ extern "C"
 
 #if !defined(LOG_NONE)
 #if !defined(LOG_UDP) && !defined(LOG_UART) && !defined(LOG_FILE)
-#define LOG_UDP
+#define LOG_NONE
 #endif
 #endif
 

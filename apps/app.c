@@ -144,7 +144,7 @@ static void blink_work_led()
 
 	ledcpu_stamp = ticks;
 
-	//HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_12);
+	HAL_GPIO_TogglePin(ledcpu_GPIO_Port, ledcpu_Pin);
 }
 
 void idle(void const *argument)
