@@ -139,8 +139,10 @@ void Error_Handler(void);
 #define can_mosi_GPIO_Port GPIOB
 #define can_int0_Pin GPIO_PIN_6
 #define can_int0_GPIO_Port GPIOB
+#define can_int0_EXTI_IRQn EXTI9_5_IRQn
 #define can_int1_Pin GPIO_PIN_7
 #define can_int1_GPIO_Port GPIOB
+#define can_int1_EXTI_IRQn EXTI9_5_IRQn
 #define can_cs_Pin GPIO_PIN_8
 #define can_cs_GPIO_Port GPIOB
 #define out4_Pin GPIO_PIN_0
