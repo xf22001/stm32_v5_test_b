@@ -6,7 +6,7 @@
  *   文件名称：test_uart_b.c
  *   创 建 者：肖飞
  *   创建日期：2022年05月07日 星期六 09时35分03秒
- *   修改日期：2022年05月10日 星期二 15时10分44秒
+ *   修改日期：2022年07月20日 星期三 15时04分37秒
  *   描    述：
  *
  *================================================================*/
@@ -14,6 +14,7 @@
 
 #include "uart_data_task.h"
 
+#define LOG_DISABLE
 #include "log.h"
 
 typedef struct {
@@ -36,7 +37,7 @@ static void uart_data_request(void *fn_ctx, void *chain_ctx)
 	ctx->tx_size = sizeof(uart_test_tx_data_t);
 	ctx->rx_size = sizeof(uart_test_rx_data_t);
 
-	rx_size = uart_rx_data(uart_data_task_info->uart_info, ctx->rx_data, ctx->rx_size, 100);
+	rx_size = uart_rx_data(uart_data_task_info->uart_info, ctx->rx_data, ctx->rx_size, 1000);
 
 	if(rx_size == ctx->rx_size) {
 		uart_test_rx_data_t *uart_test_rx_data = (uart_test_rx_data_t *)ctx->rx_data;
@@ -46,7 +47,7 @@ static void uart_data_request(void *fn_ctx, void *chain_ctx)
 		uart_test_tx_data->id = uart_test_rx_data->id;
 		uart_test_tx_data->v = uart_test_rx_data->v1 + uart_test_rx_data->v2;
 
-		tx_size = uart_tx_data(uart_data_task_info->uart_info, ctx->tx_data, ctx->tx_size, 100);
+		tx_size = uart_tx_data(uart_data_task_info->uart_info, ctx->tx_data, ctx->tx_size, 1000);
 
 		if(tx_size != ctx->tx_size) {
 			debug("uart %d tx_size:%d, ctx->tx_size:%d", ctx->id, tx_size, ctx->tx_size);

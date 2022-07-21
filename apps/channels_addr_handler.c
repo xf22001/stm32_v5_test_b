@@ -6,7 +6,7 @@
  *   文件名称：channels_addr_handler.c
  *   创 建 者：肖飞
  *   创建日期：2021年07月16日 星期五 14时03分28秒
- *   修改日期：2022年07月05日 星期二 14时39分30秒
+ *   修改日期：2022年07月21日 星期四 10时13分21秒
  *   描    述：
  *
  *================================================================*/
@@ -211,6 +211,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_DOOR1_OPEN: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey1_GPIO_Port, rey1_Pin, modbus_data_ctx->value);
 			}
@@ -218,6 +221,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_EPO: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey2_GPIO_Port, rey2_Pin, modbus_data_ctx->value);
 			}
@@ -225,6 +231,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_FUSE1_OPEN: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey3_GPIO_Port, rey3_Pin, modbus_data_ctx->value);
 			}
@@ -232,6 +241,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_FUSE2_OPEN: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey4_GPIO_Port, rey4_Pin, modbus_data_ctx->value);
 			}
@@ -239,6 +251,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_MAIN_RLY_PLUG1_BACK: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey5_GPIO_Port, rey5_Pin, modbus_data_ctx->value);
 			}
@@ -246,6 +261,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_MAIN_RLY_PLUG2_BACK: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey6_GPIO_Port, rey6_Pin, modbus_data_ctx->value);
 			}
@@ -253,6 +271,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_BRG_RLY_DRV_BACK: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey7_GPIO_Port, rey7_Pin, modbus_data_ctx->value);
 			}
@@ -260,6 +281,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_POWERDISTRIBUTION_1_BACK: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey8_GPIO_Port, rey8_Pin, modbus_data_ctx->value);
 			}
@@ -267,6 +291,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_POWERDISTRIBUTION_2_BACK: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey9_GPIO_Port, rey9_Pin, modbus_data_ctx->value);
 			}
@@ -274,6 +301,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_POWERDISTRIBUTION_3_BACK: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey10_GPIO_Port, rey10_Pin, modbus_data_ctx->value);
 			}
@@ -281,6 +311,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_POWERDISTRIBUTION_4_BACK: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey11_GPIO_Port, rey11_Pin, modbus_data_ctx->value);
 			}
@@ -288,6 +321,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_POWERDISTRIBUTION_5_BACK: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey12_GPIO_Port, rey12_Pin, modbus_data_ctx->value);
 			}
@@ -295,6 +331,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_FAN1_FAULT: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey13_GPIO_Port, rey13_Pin, modbus_data_ctx->value);
 			}
@@ -302,6 +341,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_FAN2_FAULT: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey14_GPIO_Port, rey14_Pin, modbus_data_ctx->value);
 			}
@@ -309,6 +351,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_FAN3_FAULT: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey15_GPIO_Port, rey15_Pin, modbus_data_ctx->value);
 			}
@@ -316,6 +361,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_FAN4_FAULT: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey16_GPIO_Port, rey16_Pin, modbus_data_ctx->value);
 			}
@@ -323,6 +371,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_FAN5_FAULT: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey17_GPIO_Port, rey17_Pin, modbus_data_ctx->value);
 			}
@@ -330,6 +381,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_PAR_EXT_RX1: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey18_GPIO_Port, rey18_Pin, modbus_data_ctx->value);
 			}
@@ -337,6 +391,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_PAR_EXT_RX2: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey19_GPIO_Port, rey19_Pin, modbus_data_ctx->value);
 			}
@@ -344,6 +401,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_PAR_EXT_RX3: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey20_GPIO_Port, rey20_Pin, modbus_data_ctx->value);
 			}
@@ -351,6 +411,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_PLUG1_LOCK_BACK: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey21_GPIO_Port, rey21_Pin, modbus_data_ctx->value);
 			}
@@ -358,6 +421,9 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 		break;
 
 		case TEST_TYPE_PORTS_PLUG2_LOCK_BACK: {
+			static uint8_t value;
+			modbus_data_value_rw(modbus_data_ctx, value);
+
 			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_SET) {
 				HAL_GPIO_WritePin(rey22_GPIO_Port, rey22_Pin, modbus_data_ctx->value);
 			}
