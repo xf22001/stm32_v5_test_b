@@ -6,7 +6,7 @@
  *   文件名称：channels_addr_handler.c
  *   创 建 者：肖飞
  *   创建日期：2021年07月16日 星期五 14时03分28秒
- *   修改日期：2022年07月21日 星期四 10时13分21秒
+ *   修改日期：2022年08月03日 星期三 08时46分13秒
  *   描    述：
  *
  *================================================================*/
@@ -209,6 +209,88 @@ void channels_modbus_data_action(void *fn_ctx, void *chain_ctx)
 			}
 		}
 		break;
+
+		case TEST_TYPE_PORTS_DISCHARGE_RLY_PLUG1: {
+			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_GET) {
+				modbus_data_ctx->value = HAL_GPIO_ReadPin(out4_GPIO_Port, out4_Pin);
+			}
+		}
+		break;
+
+		case TEST_TYPE_PORTS_DISCHARGE_RLY_PLUG2: {
+			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_GET) {
+				modbus_data_ctx->value = HAL_GPIO_ReadPin(out4_GPIO_Port, out4_Pin);
+			}
+		}
+		break;
+
+		case TEST_TYPE_PORTS_MARQUEE1: {
+			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_GET) {
+				modbus_data_ctx->value = HAL_GPIO_ReadPin(out5_GPIO_Port, out5_Pin);
+			}
+		}
+		break;
+
+		case TEST_TYPE_PORTS_MARQUEE2: {
+			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_GET) {
+				modbus_data_ctx->value = HAL_GPIO_ReadPin(out5_GPIO_Port, out5_Pin);
+			}
+		}
+		break;
+
+		case TEST_TYPE_PORTS_MAIN_RLY_PLUG1: {
+			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_GET) {
+				modbus_data_ctx->value = HAL_GPIO_ReadPin(out6_GPIO_Port, out6_Pin);
+			}
+		}
+		break;
+
+		case TEST_TYPE_PORTS_MAIN_RLY_PLUG2: {
+			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_GET) {
+				modbus_data_ctx->value = HAL_GPIO_ReadPin(out6_GPIO_Port, out6_Pin);
+			}
+		}
+		break;
+
+		case TEST_TYPE_PORTS_BRG_RLY_DRV: {
+			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_GET) {
+				modbus_data_ctx->value = HAL_GPIO_ReadPin(out6_GPIO_Port, out6_Pin);
+			}
+		}
+		break;
+
+		case TEST_TYPE_PORTS_POWERDISTRIBUTION_1: {
+			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_GET) {
+				modbus_data_ctx->value = HAL_GPIO_ReadPin(out7_GPIO_Port, out7_Pin);
+			}
+		}
+		break;
+
+		case TEST_TYPE_PORTS_POWERDISTRIBUTION_2: {
+			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_GET) {
+				modbus_data_ctx->value = HAL_GPIO_ReadPin(out7_GPIO_Port, out7_Pin);
+			}
+		}
+		break;
+
+		case TEST_TYPE_PORTS_POWERDISTRIBUTION_3: {
+			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_GET) {
+				modbus_data_ctx->value = HAL_GPIO_ReadPin(out7_GPIO_Port, out7_Pin);
+			}
+		}
+		break;
+
+		case TEST_TYPE_PORTS_POWERDISTRIBUTION_4: {
+			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_GET) {
+				modbus_data_ctx->value = HAL_GPIO_ReadPin(out8_GPIO_Port, out8_Pin);
+			}
+		} break;
+
+		case TEST_TYPE_PORTS_POWERDISTRIBUTION_5: {
+			if(modbus_data_ctx->action == MODBUS_DATA_ACTION_GET) {
+				modbus_data_ctx->value = HAL_GPIO_ReadPin(out8_GPIO_Port, out8_Pin);
+			}
+		} break;
 
 		case TEST_TYPE_PORTS_DOOR1_OPEN: {
 			static uint8_t value;
