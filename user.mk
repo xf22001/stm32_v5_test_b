@@ -6,7 +6,7 @@
 #   文件名称：user.mk
 #   创 建 者：肖飞
 #   创建日期：2019年10月25日 星期五 13时04分38秒
-#   修改日期：2022年05月11日 星期三 11时19分02秒
+#   修改日期：2023年03月30日 星期四 10时02分25秒
 #   描    述：
 #
 #================================================================
@@ -20,14 +20,13 @@ USER_C_INCLUDES += -Iapps
 USER_C_INCLUDES += -Iapps/modules
 USER_C_INCLUDES += -Iapps/modules/os
 USER_C_INCLUDES += -Iapps/modules/drivers
-ifneq ($(call ifdef_any_of,SPI_CAN),)
+ifneq ($(call ifdef_any_of,SPI_CAN_MCP2518),)
 USER_C_INCLUDES += -Iapps/modules/drivers/mcp2518
 USER_C_INCLUDES += -Iapps/modules/drivers/mcp2518/mcp25xxfd_driver/canfdspi
 USER_C_INCLUDES += -Iapps/modules/drivers/mcp2518/mcp25xxfd_driver/spi
 endif
 USER_C_INCLUDES += -Iapps/modules/hardware
 USER_C_INCLUDES += -Iapps/modules/app
-USER_C_INCLUDES += -Iapps/modules/tests
 
 USER_C_SOURCES += apps/os_memory.c
 USER_C_SOURCES += apps/os_random.c
@@ -40,14 +39,13 @@ USER_C_SOURCES += apps/channels.c
 USER_C_SOURCES += apps/test_can_b.c
 USER_C_SOURCES += apps/test_uart_b.c
 USER_C_SOURCES += apps/channels_addr_handler.c
-ifneq ($(call ifdef_any_of,SPI_CAN),)
+ifneq ($(call ifdef_any_of,SPI_CAN_MCP2518),)
 USER_C_SOURCES += apps/exti.c
 endif
 
 USER_C_SOURCES += apps/modules/app/uart_debug.c
 USER_C_SOURCES += apps/modules/app/can_data_task.c
 USER_C_SOURCES += apps/modules/app/uart_data_task.c
-#USER_C_SOURCES += apps/modules/app/duty_cycle_pattern.c
 USER_C_SOURCES += apps/modules/app/early_sys_callback.c
 USER_C_SOURCES += apps/modules/app/connect_state.c
 USER_C_SOURCES += apps/modules/app/can_command.c
@@ -57,9 +55,9 @@ USER_C_SOURCES += apps/modules/hardware/modbus_spec.c
 USER_C_SOURCES += apps/modules/drivers/spi_txrx.c
 USER_C_SOURCES += apps/modules/drivers/can_txrx.c
 USER_C_SOURCES += apps/modules/drivers/can_ops_hal.c
-ifneq ($(call ifdef_any_of,SPI_CAN),)
+ifneq ($(call ifdef_any_of,SPI_CAN_MCP2518),)
 USER_C_SOURCES += apps/modules/drivers/mcp2518/mcp25xxfd_driver/canfdspi/drv_canfdspi_api.c
-USER_C_SOURCES += apps/modules/drivers/can_ops_spi_can.c
+USER_C_SOURCES += apps/modules/drivers/can_ops_spi_can_mcp2518.c
 endif
 USER_C_SOURCES += apps/modules/drivers/usart_txrx.c
 USER_C_SOURCES += apps/modules/os/event_helper.c
@@ -72,10 +70,6 @@ USER_C_SOURCES += apps/modules/os/object_class.c
 USER_C_SOURCES += apps/modules/os/soft_timer.c
 USER_C_SOURCES += apps/modules/os/retarget.c
 USER_C_SOURCES += apps/modules/os/syscalls.c
-USER_C_SOURCES += apps/modules/tests/test_serial.c
-USER_C_SOURCES += apps/modules/tests/test_event.c
-USER_C_SOURCES += apps/modules/tests/test_storage.c
-USER_C_SOURCES += apps/modules/tests/test_can.c
 
 USER_CFLAGS += -DtraceTASK_SWITCHED_IN=StartIdleMonitor -DtraceTASK_SWITCHED_OUT=EndIdleMonitor
 USER_CFLAGS += -DSAL_HOOK
